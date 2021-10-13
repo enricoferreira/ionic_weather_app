@@ -48,6 +48,7 @@ const router = createRouter({
 
 router.beforeEach((to, from, next) => {
   store.commit('CHANGE_TITLE', titulo[to.name]);
+  store.commit('CHANGE_SEARCH', '');
   next()
 })
 

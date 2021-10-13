@@ -10,6 +10,9 @@ const store = createStore({
   mutations: {
     CHANGE_TITLE(state, payload) {
       state.title = payload;
+    },
+    CHANGE_SEARCH(state, payload){
+      state.search = payload;
     }
   },
   actions: {

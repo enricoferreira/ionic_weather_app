@@ -1,6 +1,6 @@
 <template>
-  <div id="container" class="content-max-height">
-    <slot></slot>
+  <div id="container">
+    <slot slot></slot>
   </div>
 </template>
 
@@ -15,9 +15,9 @@ export default {
 </script>
 
 <style scoped>
-.content-max-height{
+/* .content-max-height{
   height: calc(100% - 110px);
-}
+} */
 
 #container {
   text-align: center;

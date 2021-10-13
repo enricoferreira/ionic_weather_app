@@ -6,14 +6,14 @@
             </ion-buttons>
             <ion-title>{{title}}</ion-title>
         </ion-toolbar>
-        <ion-toolbar v-if="search_active">
-            <ion-searchbar v-model="search"></ion-searchbar>
+        <ion-toolbar color="primary" v-if="search_active">
+            <ion-searchbar @ionInput="atualizarSearch" v-model="searchable"></ion-searchbar>
         </ion-toolbar>
     </ion-header>
 </template>
 
 <script>
-import {mapState} from 'vuex';
+import {mapState, mapMutations} from 'vuex';
 export default {
     props: {
         search_active:{
@@ -24,14 +24,19 @@ export default {
     },
     data(){
         return{
-            search: '',
         }
     },
     methods:{
-
+        ...mapMutations(['CHANGE_SEARCH']),
+        atualizarSearch(v){
+            this.CHANGE_SEARCH(v.target.value)
+        }
     },
     computed:{
-        ...mapState(['title'])
+        ...mapState(['title', 'search']),
+        searchable(){
+            return this.search;
+        }
     }
 }
 </script>
