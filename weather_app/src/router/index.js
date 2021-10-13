@@ -31,6 +31,11 @@ const routes = [
         name: 'Tab3',
         path: 'tab3',
         component: () => import('@/views/Tab3.vue')
+      },
+      {
+        name: 'Tab4',
+        path: 'tab4',
+        component: () => import('@/views/Tab4.vue')
       }
     ]
   }

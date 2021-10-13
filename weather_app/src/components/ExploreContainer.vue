@@ -1,7 +1,6 @@
 <template>
-  <div id="container">
-    <strong>{{ name }}</strong>
-    <p>Explore <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
+  <div id="container" class="content-max-height">
+    <slot></slot>
   </div>
 </template>
 
@@ -16,6 +15,10 @@ export default {
 </script>
 
 <style scoped>
+.content-max-height{
+  height: calc(100% - 110px);
+}
+
 #container {
   text-align: center;
   position: absolute;

@@ -1,6 +1,7 @@
 export default{
     Tabs: 'Inicial',
-    Tab1: 'Título Tab 1',
-    Tab2: 'Título Tab 2',
-    Tab3: 'Título Tab 3',
+    Tab1: 'Como está o clima?',
+    Tab2: 'Como está a previsão?',
+    Tab3: 'O que fazer?',
+    Tab4: 'Título Tab 4',
 }

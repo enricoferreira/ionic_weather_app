@@ -1,27 +1,29 @@
 <template>
   <ion-page>
+    <toolbar></toolbar>
     <ion-content :fullscreen="true">
-      <ion-header collapse="condense">
-        <ion-toolbar>
-          <ion-title size="large">Tab 1 </ion-title>
-        </ion-toolbar>
-      </ion-header>
-    
-      <ExploreContainer :name="'Tab 1 page' + title" />
+      <explore-container>
+      </explore-container>
     </ion-content>
   </ion-page>
 </template>
 
 <script>
-import { IonPage, IonHeader, IonToolbar, IonTitle, IonContent } from '@ionic/vue';
+import { IonPage,IonContent} from '@ionic/vue';
 import ExploreContainer from '@/components/ExploreContainer.vue';
 import {mapState} from 'vuex';
+import Toolbar from '@/components/Toolbar.vue'
 
 export default  {
   name: 'Tab1',
-  components: { ExploreContainer, IonHeader, IonToolbar, IonTitle, IonContent, IonPage },
+  components: { ExploreContainer,IonContent, IonPage, Toolbar},
   computed:{
     ...mapState(['title'])
+  },
+  data(){
+    return {
+      pesquisa: ''
+    }
   },
   created(){
   }

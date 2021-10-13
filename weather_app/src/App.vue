@@ -1,6 +1,6 @@
 <template>
   <ion-app>
-    <toolbar></toolbar>
+    <!-- <toolbar></toolbar> -->
     <ion-router-outlet />
   </ion-app>
 </template>
@@ -8,13 +8,13 @@
 <script>
 import { IonApp, IonRouterOutlet } from '@ionic/vue';
 import { defineComponent } from 'vue';
-import Toolbar from '@/components/Toolbar.vue'
+// import Toolbar from '@/components/Toolbar.vue'
 export default defineComponent({
   name: 'App',
   components: {
     IonApp,
     IonRouterOutlet,
-    Toolbar
+    // Toolbar
   }
 });
 </script>
