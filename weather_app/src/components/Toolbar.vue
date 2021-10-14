@@ -1,9 +1,12 @@
 <template>
-    <ion-header>
+    <ion-header collapse>
         <ion-toolbar color="primary">
             <ion-buttons slot="end">
-                <ion-button>
+                <ion-button v-if="!ui_information_type_card" @click="changeTypeInfo(true)">
                     <ion-icon :icon="idCard"></ion-icon>
+                </ion-button>
+                <ion-button v-else @click="changeTypeInfo(false)">
+                    <ion-icon :icon="list"></ion-icon>
                 </ion-button>
             </ion-buttons>
             <ion-title>{{title}}</ion-title>
@@ -16,7 +19,7 @@
 
 <script>
 import {mapState, mapMutations} from 'vuex';
-import { idCard } from 'ionicons/icons';
+import { idCard, list } from 'ionicons/icons';
 export default {
     props: {
         search_active:{
@@ -30,18 +33,22 @@ export default {
         }
     },
     methods:{
-        ...mapMutations(['CHANGE_SEARCH']),
+        ...mapMutations(['CHANGE_SEARCH', 'CHANGE_INFORMATION_TYPE_CARD']),
         atualizarSearch(v){
             this.CHANGE_SEARCH(v.target.value)
+        },
+        changeTypeInfo(v){
+            this.CHANGE_INFORMATION_TYPE_CARD(v);
         }
     },
     setup() {
         return {
-            idCard
+            idCard,
+            list
         }
     },
     computed:{
-        ...mapState(['title', 'search']),
+        ...mapState(['title', 'search', 'ui_information_type_card']),
         searchable(){
             return this.search;
         }

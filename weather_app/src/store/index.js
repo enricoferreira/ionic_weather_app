@@ -5,9 +5,13 @@ const store = createStore({
     return {
       title: 'Titulo',
       search: '',
+      ui_information_type_card: false,
     };
   },
   mutations: {
+    CHANGE_INFORMATION_TYPE_CARD(state, payload){
+      state.ui_information_type_card = payload;
+    },
     CHANGE_TITLE(state, payload) {
       state.title = payload;
     },
