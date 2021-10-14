@@ -1,13 +1,10 @@
 <template>
     <ion-header>
         <ion-toolbar color="primary">
-            <ion-buttons slot="start">
-                <ion-back-button></ion-back-button>
-            </ion-buttons>
             <ion-title>{{title}}</ion-title>
         </ion-toolbar>
         <ion-toolbar color="primary" v-if="search_active">
-            <ion-searchbar @ionInput="atualizarSearch" v-model="searchable"></ion-searchbar>
+            <ion-searchbar placeholder="Encontre seu personagem..." @ionInput="atualizarSearch" v-model="searchable"></ion-searchbar>
         </ion-toolbar>
     </ion-header>
 </template>

@@ -3,69 +3,60 @@
     <toolbar :search_active="true"></toolbar>
     <ion-content :fullscreen="true">
       <ion-list>
-        <ion-item>Amsterdam</ion-item>
-        <ion-item>Bogota</ion-item>
-        <ion-item>Buenos Aires</ion-item>
-        <ion-item>Cairo</ion-item>
-        <ion-item>Dhaka</ion-item>
-        <ion-item>Edinburgh</ion-item>
-        <ion-item>Genoa</ion-item>
-        <ion-item>Glasgow</ion-item>
-        <ion-item>Hanoi</ion-item>
-        <ion-item>Hong Kong</ion-item>
-        <ion-item>Islamabad</ion-item>
-        <ion-item>Istanbul</ion-item>
-        <ion-item>Jakarta</ion-item>
-        <ion-item>Kiel</ion-item>
-        <ion-item>Kyoto</ion-item>
-        <ion-item>Le Havre</ion-item>
-        <ion-item>Lebanon</ion-item>
-        <ion-item>Lhasa</ion-item>
-        <ion-item>Lima</ion-item>
-        <ion-item>London</ion-item>
-        <ion-item>Los Angeles</ion-item>
-        <ion-item>Madrid</ion-item>
-        <ion-item>Manila</ion-item>
-        <ion-item>New York</ion-item>
-        <ion-item>Olympia</ion-item>
-        <ion-item>Oslo</ion-item>
-        <ion-item>Panama City</ion-item>
-        <ion-item>Peking</ion-item>
-        <ion-item>Philadelphia</ion-item>
-        <ion-item>San Francisco</ion-item>
-        <ion-item>Seoul</ion-item>
-        <ion-item>Taipeh</ion-item>
-        <ion-item>Tel Aviv</ion-item>
-        <ion-item>Tokio</ion-item>
-        <ion-item>Uelzen</ion-item>
-        <ion-item>Washington</ion-item>
+        <ion-item v-for="(person, i_person) in personagens_computed" :key="i_person + 'persons'">{{person.name}}
+        </ion-item>
       </ion-list>
+      <ion-router-outlet />
     </ion-content>
   </ion-page>
 </template>
 
 <script>
-import { IonPage,IonContent} from '@ionic/vue';
+import {IonRouterOutlet,IonPage,IonContent} from '@ionic/vue';
+// import { idCard } from 'ionicons/icons';
 import {mapState} from 'vuex';
 import Toolbar from '@/components/Toolbar.vue'
-
+import {api} from '@/service/service.js'
 export default  {
   name: 'Tab1',
-  components: { IonContent, IonPage, Toolbar},
+  components: { IonContent, IonPage, Toolbar, IonRouterOutlet},
   computed:{
-    ...mapState(['title'])
+    ...mapState(['title', 'search']),
+    personagens_computed(){
+      return this.personagens.filter(personagem => personagem['name'].toLowerCase().includes(this.search.toLowerCase()))
+    }
   },
   data(){
     return {
-      search: ''
+      personagens: []
     }
   },
   methods:{
-    atualizarSearch(v){
-      this.search = v;
+    carregarDados(){
+      api.get('/character')
+      .then(r => {
+        this.personagens = r.data.results
+      })
+      .catch(err => {
+        console.log(err);
+      })
+      .finally(() => {
+
+      })
     }
   },
   created(){
+    this.carregarDados()
   }
 }
 </script>
+<style>
+.v-enter-active, .v-leave-active{
+  transition: all 1.3s;
+}
+
+.v-enter, .v-leave{
+  opacity: 0;
+  transform: translateY(100px);
+}
+</style>
