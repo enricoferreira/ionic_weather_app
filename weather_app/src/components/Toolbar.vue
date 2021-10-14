@@ -1,6 +1,11 @@
 <template>
     <ion-header>
         <ion-toolbar color="primary">
+            <ion-buttons slot="end">
+                <ion-button>
+                    <ion-icon :icon="idCard"></ion-icon>
+                </ion-button>
+            </ion-buttons>
             <ion-title>{{title}}</ion-title>
         </ion-toolbar>
         <ion-toolbar color="primary" v-if="search_active">
@@ -11,6 +16,7 @@
 
 <script>
 import {mapState, mapMutations} from 'vuex';
+import { idCard } from 'ionicons/icons';
 export default {
     props: {
         search_active:{
@@ -27,6 +33,11 @@ export default {
         ...mapMutations(['CHANGE_SEARCH']),
         atualizarSearch(v){
             this.CHANGE_SEARCH(v.target.value)
+        }
+    },
+    setup() {
+        return {
+            idCard
         }
     },
     computed:{
